@@ -7,10 +7,9 @@
       <Schema Namespace="TravieIOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="HighScores">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="UserName" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="UserName" Type="nvarchar" MaxLength="25" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="25" Nullable="false" />
           <Property Name="Score" Type="int" />
         </EntityType>
         <EntityContainer Name="TravieIOModelStoreContainer">
@@ -23,13 +22,12 @@
       <Schema Namespace="TravieIOModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="HighScore">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="UserName" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="UserName" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Score" Type="Int32" />
         </EntityType>
-        <EntityContainer Name="TravieIOEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="TravieIOEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="HighScores" EntityType="Self.HighScore" />
         </EntityContainer>
       </Schema>
@@ -37,11 +35,10 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="TravieIOModelStoreContainer" CdmEntityContainer="TravieIOEntities">
+        <EntityContainerMapping StorageEntityContainer="TravieIOModelStoreContainer" CdmEntityContainer="TravieIOEntities1">
           <EntitySetMapping Name="HighScores">
             <EntityTypeMapping TypeName="TravieIOModel.HighScore">
               <MappingFragment StoreEntitySet="HighScores">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="Score" ColumnName="Score" />
               </MappingFragment>
