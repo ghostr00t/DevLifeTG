@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="28ab839244104c58a09e03c567013680" Name="Diagram1">
+      <Diagram DiagramId="945569b5d005403ba72d1af4444d238e" Name="Diagram1">
         <EntityTypeShape EntityType="TravieIOModel.HighScore" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
