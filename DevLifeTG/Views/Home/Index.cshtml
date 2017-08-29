@@ -45,16 +45,16 @@
                     </tr>
                     <tr data-ng-repeat="data in highScores">
                         <td>
-                            <p data-ng-hide="highScore.editMode">{{ data.UserName }}</p>
-                            <input data-ng-show="highScore.editMode" type="text" data-ng-model="highScore.UserName" />
+                            <p data-ng-hide="editMode">{{ data.UserName }}</p>
+                            <input data-ng-show="editMode" type="text" data-ng-model="highScore.UserName" ng-value="{{ data.Username }}" />
                         </td>
                         <td>
-                            <p data-ng-hide="highScore.editMode">{{ data.Score }}</p>
-                            <input data-ng-show="highScore.editMode" type="text" data-ng-model="highScore.Score" />
+                            <p data-ng-hide="editMode">{{ data.Score }}</p>
+                            <input data-ng-show="editMode" type="text" data-ng-model="highScore.Score" ng-value="{{ data.Score }}" />
                         </td>
                         <td>
-                            <p data-ng-hide="highScore.editMode"><a data-ng-click="toggleEdit(highScore)" href="javascript:;">Edit</a> | <a data-ng-click="deletehighscore(data)" href="javascript:;">Delete</a></p>
-                            <p><a data-ng-click="save(data)" href="javascript:;">Save</a> | <a data-ng-click="toggleEdit(highScore)" href="javascript:;">Cancel</a></p>
+                            <p data-ng-hide="editMode"><a data-ng-click="editMode = true;" href="javascript:;">Edit</a> | <a data-ng-click="deletehighscore(data)" href="javascript:;">Delete</a></p>
+                            <p data-ng-show="editMode"><a data-ng-click="save(data); editMode = false" href="javascript:;">Save</a> | <a data-ng-click="editMode = false";" href="javascript:;">Cancel</a></p>
                         </td>
                     </tr>
                 </table>
@@ -62,7 +62,7 @@
             </div>
         </div>
     </div>
-    <div id="mydiv" data-ng-show="loading">
+    <div id="spinner" data-ng-show="loading">
         <img src="Images/ajax-loader.gif" class="ajax-loader" />
     </div>
 </div>
