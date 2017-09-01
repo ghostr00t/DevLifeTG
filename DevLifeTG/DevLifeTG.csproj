@@ -246,6 +246,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\ajax-loader.gif" />
+    <Content Include="Views\Home\Images\ajax-loader.gif" />
     <Content Include="Models\TravieIOModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>TravieIOModel.edmx</DependentUpon>
