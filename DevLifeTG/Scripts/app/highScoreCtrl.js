@@ -7,6 +7,7 @@ app.controller('highScoreController', ['$scope', '$http', highScoreController]);
 function highScoreController($scope, $http) {
     $scope.loading = true;
     $scope.addMode = false;
+    $scope.editMode = false;
     $scope.highScores = [];
 
     $http.get("/api/HighScore/")
@@ -21,7 +22,7 @@ function highScoreController($scope, $http) {
         });
 
     $scope.toggleEdit = function () {
-        this.highScore.editMode = !this.highScore.editMode;
+        $scope.editMode = !$scope.editMode;
     };
 
     $scope.toggleAdd = function () {
@@ -36,19 +37,25 @@ function highScoreController($scope, $http) {
                 alert("Added Successfully!");
                 $scope.addMode = false;
                 $scope.highScores.push(response.data);
+                $scope.reload();
                 $scope.loading = false;
             },
             function (error, response) {
                 $scope.error = "An Error has occured while adding score! " + response.status
                 $scope.loading = false;
             });
+        
     };
 
     $scope.save = function (highScore) {
-        alert("Edit");
         $scope.loading = true;
-        
-        $http({ url: '/api/HighScore/put', data: highScore, method: 'PUT' })
+        var settings = {
+            url: '/api/HighScore/put',
+            data: highScore,
+            method: 'PUT'
+        }
+        debugger
+        $http(settings)
         .then(
             function (response) {
                 alert("Saved Successfully!");
