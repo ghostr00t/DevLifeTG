@@ -1,4 +1,4 @@
-﻿(function () {
+(function () {
     'use strict';
 
 var app = angular.module('app', []);
@@ -43,38 +43,17 @@ function highScoreController($scope, $http) {
             function (error, response) {
                 $scope.error = "An Error has occured while adding score! " + response.status
                 $scope.loading = false;
-<<<<<<< Updated upstream
-            });
-<<<<<<< HEAD
-=======
             });        
->>>>>>> Stashed changes
-=======
-        
->>>>>>> 0bb859e2e2d347a26a23e391f5516ef474153330
     };
 
     $scope.save = function (highScore) {
         $scope.loading = true;
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-        
-        $http({ url: '/api/HighScore/put', data: highScore, method: 'PUT' })
-=======
-=======
->>>>>>> 0bb859e2e2d347a26a23e391f5516ef474153330
         var settings = {
             url: '/api/HighScore/put',
             data: highScore,
             method: 'PUT'
         }
-<<<<<<< HEAD
         $http(settings)
->>>>>>> Stashed changes
-=======
-        debugger
-        $http(settings)
->>>>>>> 0bb859e2e2d347a26a23e391f5516ef474153330
         .then(
             function (response) {
                 alert("Saved Successfully!");
