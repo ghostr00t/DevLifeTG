@@ -41,14 +41,27 @@ function highScoreController($scope, $http) {
             function (error, response) {
                 $scope.error = "An Error has occured while adding score! " + response.status
                 $scope.loading = false;
+<<<<<<< Updated upstream
             });
+=======
+            });        
+>>>>>>> Stashed changes
     };
 
     $scope.save = function (highScore) {
         alert("Edit");
         $scope.loading = true;
+<<<<<<< Updated upstream
         
         $http({ url: '/api/HighScore/put', data: highScore, method: 'PUT' })
+=======
+        var settings = {
+            url: '/api/HighScore/put',
+            data: highScore,
+            method: 'PUT'
+        }
+        $http(settings)
+>>>>>>> Stashed changes
         .then(
             function (response) {
                 alert("Saved Successfully!");
@@ -76,7 +89,6 @@ function highScoreController($scope, $http) {
                 $scope.loading = false;
             });
     };
-
 }
 
 })();
