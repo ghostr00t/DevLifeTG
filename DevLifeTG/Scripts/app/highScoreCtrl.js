@@ -43,8 +43,7 @@ function highScoreController($scope, $http) {
             function (error, response) {
                 $scope.error = "An Error has occured while adding score! " + response.status
                 $scope.loading = false;
-            });
-        
+            });        
     };
 
     $scope.save = function (highScore) {
@@ -54,7 +53,6 @@ function highScoreController($scope, $http) {
             data: highScore,
             method: 'PUT'
         }
-        debugger
         $http(settings)
         .then(
             function (response) {
@@ -83,7 +81,6 @@ function highScoreController($scope, $http) {
                 $scope.loading = false;
             });
     };
-
 }
 
 })();
