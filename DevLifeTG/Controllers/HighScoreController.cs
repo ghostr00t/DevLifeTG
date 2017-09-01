@@ -12,7 +12,7 @@ namespace DevLifeTG.Controllers
 {
     public class HighScoreController : ApiController
     {
-        TravieIOEntities db = new TravieIOEntities();
+        TravieIOEntities1 db = new TravieIOEntities1();
 
         [HttpGet]
         public IEnumerable<HighScore> Get()
@@ -20,9 +20,9 @@ namespace DevLifeTG.Controllers
             return db.HighScores.AsEnumerable();
         }
 
-        public HighScore Get(int id)
+        public HighScore Get(string username)
         {
-            HighScore highScore = db.HighScores.Find(id);
+            HighScore highScore = db.HighScores.Find(username);
             if (highScore == null)
             {
                 throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
@@ -37,7 +37,7 @@ namespace DevLifeTG.Controllers
                 db.HighScores.Add(highScore);
                 db.SaveChanges();
                 HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, highScore);
-                response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = highScore.Id }));
+                response.Headers.Location = new Uri(Url.Link("DefaultApi", new { username = highScore.UserName }));
                 return response;
             }
             else
@@ -46,15 +46,11 @@ namespace DevLifeTG.Controllers
             }
         }
 
-        public HttpResponseMessage Put(int id, HighScore highScore)
+        public HttpResponseMessage Put(HighScore highScore)
         {
             if (!ModelState.IsValid)
             {
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
-            }
-            if (id != highScore.Id)
-            {
-                return Request.CreateResponse(HttpStatusCode.BadRequest);
             }
             db.Entry(highScore).State = EntityState.Modified;
             try
@@ -68,9 +64,9 @@ namespace DevLifeTG.Controllers
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
-        public HttpResponseMessage Delete(int id)
+        public HttpResponseMessage Delete(string UserName)
         {
-            HighScore highScore = db.HighScores.Find(id);
+            HighScore highScore = db.HighScores.Find(UserName);
             if (highScore == null)
             {
                 return Request.CreateResponse(HttpStatusCode.NotFound);
@@ -84,7 +80,9 @@ namespace DevLifeTG.Controllers
             {
                 return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
             }
-            return Request.CreateResponse(HttpStatusCode.OK, highScore);
+
+            IEnumerable<HighScore>highScoreList = db.HighScores.AsEnumerable();
+            return Request.CreateResponse(HttpStatusCode.OK, highScoreList);
         }
 
         protected override void Dispose(bool disposing)

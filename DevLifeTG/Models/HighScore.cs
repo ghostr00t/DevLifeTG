@@ -14,7 +14,6 @@ namespace DevLifeTG.Models
     
     public partial class HighScore
     {
-        public int Id { get; set; }
         public string UserName { get; set; }
         public Nullable<int> Score { get; set; }
     }

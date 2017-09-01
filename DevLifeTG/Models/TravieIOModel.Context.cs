@@ -13,10 +13,10 @@ namespace DevLifeTG.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class TravieIOEntities : DbContext
+    public partial class TravieIOEntities1 : DbContext
     {
-        public TravieIOEntities()
-            : base("name=TravieIOEntities")
+        public TravieIOEntities1()
+            : base("name=TravieIOEntities1")
         {
         }
     
