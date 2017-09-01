@@ -46,11 +46,11 @@
                     <tr data-ng-repeat="data in highScores">
                         <td>
                             <p data-ng-hide="editMode">{{ data.UserName }}</p>
-                            <input data-ng-show="editMode" type="text" data-ng-model="highScore.UserName" ng-value="{{ data.Username }}" />
+                            <input data-ng-show="editMode" type="text" data-ng-model="data.UserName"/>
                         </td>
                         <td>
                             <p data-ng-hide="editMode">{{ data.Score }}</p>
-                            <input data-ng-show="editMode" type="text" data-ng-model="highScore.Score" ng-value="{{ data.Score }}" />
+                            <input data-ng-show="editMode" type="text" data-ng-model="data.Score"/>
                         </td>
                         <td>
                             <p data-ng-hide="editMode"><a data-ng-click="editMode = true;" href="javascript:;">Edit</a> | <a data-ng-click="deletehighscore(data)" href="javascript:;">Delete</a></p>

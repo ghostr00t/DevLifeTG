@@ -49,9 +49,13 @@ function highScoreController($scope, $http) {
 
     $scope.save = function (highScore) {
         $scope.loading = true;
-        var score = this.highScore
-        $http.put("/api/HighScore/" + score.Score, score)
-       // $http({ url: '/api/HighScore/put', data: highScore, method: 'PUT' })
+        var settings = {
+            url: '/api/HighScore/put',
+            data: highScore,
+            method: 'PUT'
+        }
+        debugger
+        $http(settings)
         .then(
             function (response) {
                 alert("Saved Successfully!");
