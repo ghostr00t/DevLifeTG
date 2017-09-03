@@ -46,6 +46,14 @@ namespace DevLifeTG.Controllers
             }
         }
 
+        public static HighScore newUser(HighScore user)
+        {
+            TravieIOEntities1 db2 = new TravieIOEntities1();
+            db2.HighScores.Add(user);
+            db2.SaveChanges();
+            return user;
+        }
+
         public HttpResponseMessage Put(HighScore highScore)
         {
             if (!ModelState.IsValid)
