@@ -13,16 +13,17 @@ namespace DevLifeTG.Controllers
             return View();
         }
 
-        public ActionResult About()
+        [Authorize]
+        public ActionResult Profile()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Profile page.";
 
             return View();
         }
-
-        public ActionResult Contact()
+        [Authorize(Users = "richardtwise@gmail.com")]
+        public ActionResult Manage()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Manage page.";
 
             return View();
         }

@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "Manage";
+}
+<div data-ng-controller="highScoreController" class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <br />
+            <br />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover" style="width:800px">
+                    <tr>
+                        <td>Username</td>
+                        <th>Score</th>
+                    </tr>
+                    <tr data-ng-repeat="data in highScores">
+                        <td>
+                            <p data-ng-hide="editMode">{{ data.UserName }}</p>
+                            <input data-ng-show="editMode" type="text" data-ng-model="data.UserName"/>
+                        </td>
+                        <td>
+                            <p data-ng-hide="editMode">{{ data.Score }}</p>
+                            <input data-ng-show="editMode" type="text" data-ng-model="data.Score"/>
+                        </td>
+                        <td>
+                            <p data-ng-hide="editMode"><a data-ng-click="editMode = true;" href="javascript:;">Edit</a> | <a data-ng-click="deletehighscore(data)" href="javascript:;">Delete</a></p>
+                            <p data-ng-show="editMode"><a data-ng-click="save(data); editMode = false" href="javascript:;">Save</a> | <a data-ng-click="editMode = false";" href="javascript:;">Cancel</a></p>
+                        </td>
+                    </tr>
+                </table>
+                <hr />
+            </div>
+        </div>
+    </div>
+    <div id="spinner" data-ng-show="loading">
+        <img src="Images/ajax-loader.gif" class="ajax-loader" />
+    </div>
+</div>
