@@ -14,9 +14,9 @@ namespace DevLifeTG.Controllers
         }
 
         [Authorize]
-        public ActionResult Profile()
+        public ActionResult Play()
         {
-            ViewBag.Message = "Profile page.";
+            ViewBag.Message = "Play page.";
 
             return View();
         }
