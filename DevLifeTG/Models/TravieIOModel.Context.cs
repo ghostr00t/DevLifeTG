@@ -12,6 +12,8 @@ namespace DevLifeTG.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class TravieIOEntities1 : DbContext
     {
@@ -26,5 +28,20 @@ namespace DevLifeTG.Models
         }
     
         public virtual DbSet<HighScore> HighScores { get; set; }
+    
+        public virtual ObjectResult<uspGetHighScores_Result> uspGetHighScores()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<uspGetHighScores_Result>("uspGetHighScores");
+        }
+    
+        public virtual ObjectResult<HighScore> GetTopScore()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<HighScore>("GetTopScore");
+        }
+    
+        public virtual ObjectResult<HighScore> GetTopScore(MergeOption mergeOption)
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<HighScore>("GetTopScore", mergeOption);
+        }
     }
 }

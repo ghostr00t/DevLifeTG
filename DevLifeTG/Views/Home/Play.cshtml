@@ -1,7 +1,49 @@
 ﻿@{
     ViewBag.Title = "Play";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+<div class="card-deck">
+    <div class="demo-card">
+        <div class="card card-inverse text-center" style="background-color: #333; border-color: #333;">
+            <h5 class="card-header">Offshore Developers <span id="offshoreDev">0</span></h5>
+            <img class="card-img-top" src="images/offshoredev.jpg" alt="Card image cap">
+            <div class="card-block">
+                <button onclick="buyOffshoreDev()">Hire</button> Cost: <span id="offshoreDevCost">10</span>
+                <p class="card-text"></p>
+            </div>
+        </div>
+    </div>
 
-<p>Use this area to provide additional information.</p>
+    <div class="demo-card">
+        <div class="card card-inverse text-center" style="background-color: #333; border-color: #333;">
+            <h5 class="card-header">Front-End Developers <span id="frontendDev">0</span></h5>
+            <img class="card-img-top" src="images/fedev.jpg" alt="Card image cap">
+            <div class="card-block">
+                <button onclick="buyFrontendDev()">Hire</button> Cost: <span id="frontendDevCost">15</span>
+                <p class="card-text"></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="demo-card">
+        <div class="card card-inverse text-center" style="background-color: #333; border-color: #333;">
+            <h5 class="card-header">Back-End Developers <span id="backendDev">0</span></h5>
+            <img class="card-img-top" src="images/bedev.jpg" alt="Card image cap">
+            <div class="card-block">
+                <button onclick="buyBackendDev()">Hire</button> Cost: <span id="backendDevCost">20</span>
+                <p class="card-text"></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="demo-card">
+        <div class="card card-inverse text-center" style="background-color: #333; border-color: #333;">
+            <h5 class="card-header">Project Managers <span id="projectManager">0</span></h5>
+            <img class="card-img-top" src="images/projectmanager.jpg" alt="Card image cap">
+            <div class="card-block">
+                <button onclick="buyProjectManager()">Hire</button> Cost: <span id="projectManagerCost">50</span>
+                <p class="card-text"></p>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="TravieIOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="TravieIOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="HighScores">
           <Key>
             <PropertyRef Name="UserName" />
@@ -12,11 +12,11 @@
           <Property Name="UserName" Type="nvarchar" MaxLength="25" Nullable="false" />
           <Property Name="Score" Type="int" />
         </EntityType>
+        <Function Name="uspGetHighScores" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="TravieIOModelStoreContainer">
           <EntitySet Name="HighScores" EntityType="Self.HighScores" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TravieIOModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -29,7 +29,13 @@
         </EntityType>
         <EntityContainer Name="TravieIOEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="HighScores" EntityType="Self.HighScore" />
+          <FunctionImport Name="uspGetHighScores" ReturnType="Collection(TravieIOModel.uspGetHighScores_Result)" />
+          <FunctionImport Name="GetTopScore" EntitySet="HighScores" ReturnType="Collection(TravieIOModel.HighScore)" />
         </EntityContainer>
+        <ComplexType Name="uspGetHighScores_Result">
+          <Property Type="String" Name="UserName" Nullable="false" MaxLength="25" />
+          <Property Type="Int32" Name="Score" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -44,6 +50,15 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="uspGetHighScores" FunctionName="TravieIOModel.Store.uspGetHighScores">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TravieIOModel.uspGetHighScores_Result">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Score" ColumnName="Score" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetTopScore" FunctionName="TravieIOModel.Store.uspGetHighScores" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

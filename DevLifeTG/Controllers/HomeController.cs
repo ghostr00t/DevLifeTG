@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevLifeTG.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,16 +17,19 @@ namespace DevLifeTG.Controllers
         [Authorize]
         public ActionResult Play()
         {
-            ViewBag.Message = "Play page.";
-
-            return View();
+           return View();
         }
         [Authorize(Users = "richardtwise@gmail.com")]
         public ActionResult Manage()
         {
-            ViewBag.Message = "Manage page.";
-
             return View();
         }
+
+        public ActionResult SprocTest()
+        {
+            TravieIOEntities1 entities = new TravieIOEntities1();
+            return View(entities.GetTopScore());
+        }
+    
     }
 }
